@@ -60,6 +60,11 @@ export class UsersService {
         return { accessToken };
     }
 
+    /**
+     * Generate Json Web Token
+     * @param payload JWT payload
+     * @returns token
+     */
     private generateJWT(payload: JWTPayloadType) : Promise<string> {
         return this.jwtService.signAsync(payload);
     }
