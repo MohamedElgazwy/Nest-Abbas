@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Headers } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { RegisterDto } from "./dtos/register.dto";
 import { LoginDto } from "./dtos/login.dto";
@@ -17,5 +17,10 @@ export class UsersController {
     @HttpCode(HttpStatus.OK)
     public login(@Body() body: LoginDto) {
         return this.usersService.login(body);
+    }
+
+    @Get('/current-user')
+    public getCurrentUser(@Headers() headers: any) {
+        return this.usersService.getCurrentUser(headers.authorization);
     }
 }
